@@ -1,0 +1,67 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @video.title %>
+</p>
+
+<p>
+  <strong>Season:</strong>
+  <%= @video.season %>
+</p>
+
+<p>
+  <strong>Episode number:</strong>
+  <%= @video.episode_number %>
+</p>
+
+<p>
+  <strong>Thumbnail:</strong>
+  <%= @video.thumbnail %>
+  <%= link_to 'thumbnail', @video.thumbnail %>
+</p>
+
+<p>
+  <strong>Path:</strong>
+  <%= @video.path %>
+</p>
+
+<p>
+  <strong>Filename:</strong>
+  <%= @video.filename %>
+</p>
+
+<center>
+<video width="70%" controls poster="<%= Rails.root.join(@video.thumbnail) %>">
+  <source src="<%= Rails.root.join(@video.path, @video.filename) %>" type="video/mp4">
+</video>
+</center>
+
+<% if @prev_video %>
+<span class="prev">
+  <h5>Prev Video</h5>
+  <%= link_to  image_tag(@prev_video.thumbnail, width: "360"), @prev_video %>
+  <br />
+  <%= link_to "prev video S#{@prev_video.season}E#{@prev_video.episode_number} - #{@prev_video.title}", @prev_video %>
+</span>
+<% end %>
+
+<% if @next_video %>
+<span class="next">
+  <h5>Next Video</h5>
+  <%= link_to image_tag(@next_video.thumbnail, width: "360"), @next_video %>
+  <br />
+  <%= link_to "S#{@next_video.season}E#{@next_video.episode_number} - #{@next_video.title}", @next_video %>
+</span>
+<% end %>
+
+<% if false %>
+<% if @next_next_video %>
+<span class="next-next">
+  <h5>Next Next Video</h5>
+  <%= image_tag(@next_next_video.thumbnail, width: "360") %>
+  <br />
+  <%= link_to "next_next_video S#{@next_next_video.season}E#{@next_next_video.episode_number} - #{@next_next_video.title}", @next_next_video %>
+</span>
+<% end %>
+<% end %>
