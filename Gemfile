@@ -40,6 +40,8 @@ gem 'spring',        group: :development
 
 gem "twitter-bootstrap-rails"
 
+gem "passenger"
+
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
