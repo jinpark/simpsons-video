@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :videos
+  resources :videos, only: [:index, :show]
 
   get '/:season/:episode_number' => 'videos#show'
   # The priority is based upon order of creation: first created -> highest priority.
