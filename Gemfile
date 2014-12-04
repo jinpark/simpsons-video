@@ -42,6 +42,10 @@ gem "twitter-bootstrap-rails"
 
 gem "passenger"
 
+gem "rest-client"
+
+gem "nokogiri"
+
 group :development do
   gem "better_errors"
   gem "binding_of_caller"

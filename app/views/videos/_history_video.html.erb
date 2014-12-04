@@ -1,0 +1,5 @@
+<div class="history">
+  <%= link_to "S#{@video.season}E#{@video.episode_number} - #{@video.title}", @video %>
+  <br>
+  <%= link_to  image_tag(@video.thumbnail, width: "360"), @video %>
+</div>
