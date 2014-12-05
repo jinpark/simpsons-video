@@ -15,8 +15,8 @@ while( watched_index-- ) {
 
 var chunk = 10;
 var paged_array = [];
-var history_length =history_data.length
-for (var i=0; i < history_length; i =+ chunk){
+var history_length = history_data.length;
+for (var i=0; i < history_length; i += chunk){
 	paged_array.push(history_data.slice(i,i+chunk));
 }
 
