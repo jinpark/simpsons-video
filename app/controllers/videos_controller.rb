@@ -41,8 +41,8 @@ class VideosController < ApplicationController
     def history
         if !cookies[:random_list]
             random_ids = Video.random(Video.count).pluck('id')
-            random_list = ActiveSupport::JSON.encode(random_ids)
-            cookies[:random_list] = random_list
+            random_list_encoded = ActiveSupport::JSON.encode(random_ids)
+            cookies[:random_list] = random_list_encoded
         else
             random_ids = ActiveSupport::JSON.decode(cookies[:random_list])
         end
@@ -50,17 +50,25 @@ class VideosController < ApplicationController
         random_list_sorted_videos = random_ids.collect {|id| random_list_unsorted_videos.detect {|x| x.id == id}}
         if cookies[:episode_index]
             episode_index = cookies[:episode_index].to_i
-            watched = random_ids[0..episode_index]
-            remaining = random_ids[episode_index + 1..-1]
+            watched = (0..episode_index).to_a
+            remaining = (episode_index + 1..random_ids.count - 1).to_a
         else
+            cookies[:episode_index] = 0
             episode_index = 0
-            watched = [random_ids.first]
-            remaining = random_ids[1..-1]
+            watched = [0]
+            remaining = (1..random_ids.count - 1).to_a
         end
 
         random_list_sorted_videos_hash = random_list_sorted_videos.as_json
         watched.map{ |n| random_list_sorted_videos_hash[n]['watched'] = true }
+        remaining.map{ |n| random_list_sorted_videos_hash[n]['watched'] = false }
         @random_list_sorted_videos_json = random_list_sorted_videos_hash.to_json
+
+    end
+
+    def redirect_with_slug
+
+
 
     end
 
