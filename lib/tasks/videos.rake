@@ -1,6 +1,6 @@
 namespace :videos do
   desc "Finds videos without titles and adds titles and slugs to the videos"
-  task :add_titles => :environment do
+  task :add_titles_and_slugs => :environment do
   	no_title_videos = Video.where(title: ["", nil])
     puts "Video add_titles rake task started"
   	no_title_videos.each do |video|
@@ -17,7 +17,7 @@ namespace :videos do
   end
 
   desc "Finds videos without slugs and adds slugs based on the title to the videos"
-  task :add_slugs => :environment do
+  task :add_slugs_from_titles => :environment do
   	no_slug_videos = Video.where.not(title: ["", nil]).where(slug: ["", nil])
     puts "Video add_slugs rake task started"
   	no_slug_videos.each do |video|
