@@ -28,5 +28,17 @@ namespace :videos do
   	end
     puts "Video add_slugs rake task finished"
   end
-end
 
+  desc "Check if file exists in path/filename"
+  task :check_file_path => :environment do
+    videos = Video.all
+    puts "Video check_file_path rake task started"
+    videos.each do |video|
+      video_path = Rails.public_path.to_s + Rails.root.join(video.path, video.filename).to_s
+      if !(File.exist?(video_path) || File.symlink?(video_path))
+        puts "Video #{video.id} has invalid file path - #{video_path}"
+      end
+    end
+    puts "Video check_file_path rake task finished"
+  end
+end
