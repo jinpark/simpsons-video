@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :videos, only: [:index, :show]
 
-  get '/:season/:episode_number' => 'videos#show'
+  get '/:season/:episode_number' => 'videos#redirect_to_slug'
+  get '/:season/:episode_number/:slug' => 'videos#show'
 
   get '/history' => 'videos#history'
   # The priority is based upon order of creation: first created -> highest priority.

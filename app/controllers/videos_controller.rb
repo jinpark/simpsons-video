@@ -1,5 +1,5 @@
 class VideosController < ApplicationController
-    before_action :set_video, only: [:show, :edit, :update, :destroy]
+    before_action :set_video, only: [:show, :edit, :update, :destroy, :redirect_to_slug]
 
     # GET /videos
     # GET /videos.json
@@ -66,10 +66,8 @@ class VideosController < ApplicationController
 
     end
 
-    def redirect_with_slug
-
-
-
+    def redirect_to_slug
+        redirect_to "/#{@video.season}/#{@video.episode_number}/#{@video.slug}"
     end
 
     private
