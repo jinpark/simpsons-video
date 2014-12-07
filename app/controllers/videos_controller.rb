@@ -67,7 +67,7 @@ class VideosController < ApplicationController
     end
 
     def redirect_to_slug
-        redirect_to "/#{@video.season}/#{@video.episode_number}/#{@video.slug}"
+        redirect_to "/episode/#{@video.season}/#{@video.episode_number}/#{@video.slug}"
     end
 
     private
