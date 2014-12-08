@@ -16,3 +16,4 @@
 //= require turbolinks
 //= require jquery.twbsPagination.min
 //= require underscore-min
+//= require video

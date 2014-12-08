@@ -31,11 +31,11 @@
   <%= @video.filename %>
 </p>
 
-<center>
-<video width="70%" controls poster="<%= Rails.root.join(@video.thumbnail) %>">
-  <source src="<%= Rails.root.join(@video.path, @video.filename) %>" type="video/mp4">
-</video>
-</center>
+<div class="video-container">
+  <video id="main-video" class="video-js vjs-default-skin vjs-big-play-centered" width="auto" height="auto" controls poster="<%= Rails.root.join(@video.thumbnail) %>" data-setup="{}">
+    <source src="<%= Rails.root.join(@video.path, @video.filename) %>" type="video/mp4">
+  </video>
+</div>
 
 <% if @prev_video %>
 <span class="prev">
@@ -53,15 +53,4 @@
   <br />
   <%= link_to "S#{@next_video.season}E#{@next_video.episode_number} - #{@next_video.title}", @next_video %>
 </span>
-<% end %>
-
-<% if false %>
-<% if @next_next_video %>
-<span class="next-next">
-  <h5>Next Next Video</h5>
-  <%= image_tag(@next_next_video.thumbnail, width: "360") %>
-  <br />
-  <%= link_to "next_next_video S#{@next_next_video.season}E#{@next_next_video.episode_number} - #{@next_next_video.title}", @next_next_video %>
-</span>
-<% end %>
 <% end %>
