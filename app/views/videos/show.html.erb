@@ -54,14 +54,3 @@
   <%= link_to "S#{@next_video.season}E#{@next_video.episode_number} - #{@next_video.title}", @next_video %>
 </span>
 <% end %>
-
-<% if false %>
-<% if @next_next_video %>
-<span class="next-next">
-  <h5>Next Next Video</h5>
-  <%= image_tag(@next_next_video.thumbnail, width: "360") %>
-  <br />
-  <%= link_to "next_next_video S#{@next_next_video.season}E#{@next_next_video.episode_number} - #{@next_next_video.title}", @next_next_video %>
-</span>
-<% end %>
-<% end %>
