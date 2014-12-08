@@ -5,7 +5,7 @@
 <div id='history-data' data-history='<%= @random_list_sorted_videos_json %>'></div>
 
 <script type="text/template" id='history-template'>
-    <a href="/<%%= video.season %>/<%%= video.episode_number %>/<%%= video.slug %>">
+    <a href="/episode/<%%= video.season %>/<%%= video.episode_number %>/<%%= video.slug %>">
     S<%%= video.season %>E<%%= video.episode_number %> - <%%= video.title %>
     <br>
     <img src='<%%= video.thumbnail %>' width="360" class=<%% if (video.watched) { %>"watched"<%% } %> >
