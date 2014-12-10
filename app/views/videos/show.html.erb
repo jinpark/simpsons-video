@@ -42,7 +42,7 @@
   <h5>Prev Video</h5>
   <%= link_to  image_tag(@prev_video.thumbnail, width: "360"), @prev_video %>
   <br />
-  <%= link_to "prev video S#{@prev_video.season}E#{@prev_video.episode_number} - #{@prev_video.title}", @prev_video %>
+  <%= link_to "prev video S#{@prev_video.season}E#{@prev_video.episode_number} - #{@prev_video.title}", @prev_video, class: "prev-link" %>
 </span>
 <% end %>
 
@@ -51,6 +51,8 @@
   <h5>Next Video</h5>
   <%= link_to image_tag(@next_video.thumbnail, width: "360"), @next_video %>
   <br />
-  <%= link_to "S#{@next_video.season}E#{@next_video.episode_number} - #{@next_video.title}", @next_video %>
+  <%= link_to "S#{@next_video.season}E#{@next_video.episode_number} - #{@next_video.title}", @next_video, class: "next-link" %>
 </span>
 <% end %>
+
+<%= javascript_include_tag "show_video" %>
