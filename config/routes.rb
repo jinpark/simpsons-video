@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/episode/:season/:episode_number/:slug' => 'videos#show'
 
   get '/history' => 'videos#history'
+  get '/next' => 'videos#next'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
