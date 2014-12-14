@@ -1,6 +1,6 @@
 class VideosController < ApplicationController
     before_action :set_video, only: [:show, :edit, :update, :destroy, :redirect_to_slug]
-
+    
     # GET /videos
     # GET /videos.json
     def index
