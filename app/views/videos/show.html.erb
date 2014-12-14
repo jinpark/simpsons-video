@@ -31,11 +31,11 @@
   <%= @video.filename %>
 </p>
 
-<center>
-<video width="70%" controls poster="<%= Rails.root.join(@video.thumbnail) %>">
-  <source src="<%= Rails.root.join(@video.path, @video.filename) %>" type="video/mp4">
-</video>
-</center>
+<div class="video-container">
+  <video id="main-video" class="video-js vjs-default-skin vjs-big-play-centered" width="auto" height="auto" controls poster="<%= Rails.root.join(@video.thumbnail) %>" data-setup="{}">
+    <source src="<%= Rails.root.join(@video.path, @video.filename) %>" type="video/mp4">
+  </video>
+</div>
 
 <button type="button" class="btn btn-default autoplay-btn">Autoplay</button>
 

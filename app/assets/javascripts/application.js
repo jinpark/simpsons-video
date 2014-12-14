@@ -16,3 +16,4 @@
 //= require jquery.twbsPagination.min
 //= require underscore-min
 //= require jquery.cookie-1.4.1.min
+//= require video

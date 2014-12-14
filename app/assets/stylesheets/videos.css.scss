@@ -13,3 +13,14 @@ span.prev {
 img.watched {
 	opacity: 0.5;
 }
+
+div.video-container {
+	width: 70%;
+	margin: 0px auto;
+}
+
+video {
+	position: relative !important;
+	width: 100% !important;
+	height: auto !important;
+}
