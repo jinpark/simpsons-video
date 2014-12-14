@@ -8,5 +8,6 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 
 Rails.application.config.assets.precompile += %w( history.js )
+Rails.application.config.assets.precompile += %w( show_video.js )Rails.application.config.assets.precompile += %w( history.js )
 Rails.application.config.assets.precompile += %w( darkly.css )
 Rails.application.config.assets.precompile += %w( videos.css.scss )
