@@ -70,6 +70,26 @@ class VideosController < ApplicationController
         redirect_to "/episode/#{@video.season}/#{@video.episode_number}/#{@video.slug}"
     end
 
+    def next
+        if !cookies[:random_list]
+            random_ids = Video.random(Video.count).pluck('id')
+            random_list_encoded = ActiveSupport::JSON.encode(random_ids)
+            cookies[:random_list] = random_list_encoded
+        else
+            random_ids = ActiveSupport::JSON.decode(cookies[:random_list])
+        end
+        random_list_unsorted_videos = Video.find(random_ids)
+        random_list_sorted_videos = random_ids.collect {|id| random_list_unsorted_videos.detect {|x| x.id == id}}
+        if cookies[:episode_index]
+            episode_index = cookies[:episode_index].to_i
+            redirect_to Video.find(random_list_sorted_videos[episode_index + 1])
+        else
+            cookies[:episode_index] = 0
+            episode_index = 0
+            redirect_to Video.find(random_list_sorted_videos[episode_index])
+        end
+    end
+
     private
         # Use callbacks to share common setup or constraints between actions.
         def set_video
