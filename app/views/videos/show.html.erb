@@ -1,3 +1,4 @@
+<p id="notice"><%= notice %></p>
 <video class="center-full" controls poster="<%= Rails.root.join(@video.thumbnail) %>">
   <source src="<%= Rails.root.join(@video.path, @video.filename) %>" type="video/mp4">
 </video>
@@ -21,8 +22,6 @@
   <%= link_to "S#{@next_video.season}E#{@next_video.episode_number} - #{@next_video.title}", @next_video, class: "next-link" %>
 </span>
 <% end %>
-
-<p id="notice"><%= notice %></p>
 
 <p class="center">
   <strong>Title:</strong>
