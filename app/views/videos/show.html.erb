@@ -1,41 +1,6 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @video.title %>
-</p>
-
-<p>
-  <strong>Season:</strong>
-  <%= @video.season %>
-</p>
-
-<p>
-  <strong>Episode number:</strong>
-  <%= @video.episode_number %>
-</p>
-
-<p>
-  <strong>Thumbnail:</strong>
-  <%= @video.thumbnail %>
-  <%= link_to 'thumbnail', @video.thumbnail %>
-</p>
-
-<p>
-  <strong>Path:</strong>
-  <%= @video.path %>
-</p>
-
-<p>
-  <strong>Filename:</strong>
-  <%= @video.filename %>
-</p>
-
-<center>
-<video width="70%" controls poster="<%= Rails.root.join(@video.thumbnail) %>">
+<video class="center-full" controls poster="<%= Rails.root.join(@video.thumbnail) %>">
   <source src="<%= Rails.root.join(@video.path, @video.filename) %>" type="video/mp4">
 </video>
-</center>
 
 <button type="button" class="btn btn-default autoplay-btn">Autoplay</button>
 
@@ -56,5 +21,38 @@
   <%= link_to "S#{@next_video.season}E#{@next_video.episode_number} - #{@next_video.title}", @next_video, class: "next-link" %>
 </span>
 <% end %>
+
+<p id="notice"><%= notice %></p>
+
+<p class="center">
+  <strong>Title:</strong>
+  <%= @video.title %>
+</p>
+
+<p class="center">
+  <strong>Season:</strong>
+  <%= @video.season %>
+</p>
+
+<p class="center">
+  <strong>Episode number:</strong>
+  <%= @video.episode_number %>
+</p>
+
+<p class="center">
+  <strong>Thumbnail:</strong>
+  <%= @video.thumbnail %>
+  <%= link_to 'thumbnail', @video.thumbnail %>
+</p>
+
+<p class="center">
+  <strong>Path:</strong>
+  <%= @video.path %>
+</p>
+
+<p class="center">
+  <strong>Filename:</strong>
+  <%= @video.filename %>
+</p>
 
 <%= javascript_include_tag "show_video" %>

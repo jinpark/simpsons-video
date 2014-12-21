@@ -13,3 +13,18 @@ span.prev {
 img.watched {
 	opacity: 0.5;
 }
+
+p#notice {
+	margin: 0
+}
+
+video.center-full {
+	display: block;
+	max-width: 100%;
+	height: 100vh;
+	margin: auto;
+}
+
+p.center {
+	text-align: center
+}
