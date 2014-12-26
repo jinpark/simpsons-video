@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
-<video class="center-full" controls poster="<%= Rails.root.join(@video.thumbnail) %>">
-  <source src="<%= Rails.root.join(@video.path, @video.filename) %>" type="video/mp4">
-</video>
+<div class="center-full">
+  <video id="main-video"  class="video-js vjs-default-skin vjs-big-play-centered" height="100%" width="100%" controls poster="<%= Rails.root.join(@video.thumbnail) %>" data-setup="{}">
+    <source src="<%= Rails.root.join(@video.path, @video.filename) %>" type="video/mp4">
+  </video>
+</div>
 
 <button type="button" class="btn btn-default autoplay-btn">Autoplay</button>
 
@@ -54,30 +56,6 @@
   <%= @video.filename %>
 </p>
 
-<div class="video-container">
-  <video id="main-video" class="video-js vjs-default-skin vjs-big-play-centered" width="auto" height="auto" controls poster="<%= Rails.root.join(@video.thumbnail) %>" data-setup="{}">
-    <source src="<%= Rails.root.join(@video.path, @video.filename) %>" type="video/mp4">
-  </video>
-</div>
-
-<button type="button" class="btn btn-default autoplay-btn">Autoplay</button>
-
-<% if @prev_video %>
-<span class="prev">
-  <h5>Prev Video</h5>
-  <%= link_to  image_tag(@prev_video.thumbnail, width: "360"), @prev_video %>
-  <br />
-  <%= link_to "prev video S#{@prev_video.season}E#{@prev_video.episode_number} - #{@prev_video.title}", @prev_video, class: "prev-link" %>
-</span>
-<% end %>
-
-<% if @next_video %>
-<span class="next">
-  <h5>Next Video</h5>
-  <%= link_to image_tag(@next_video.thumbnail, width: "360"), @next_video %>
-  <br />
-  <%= link_to "S#{@next_video.season}E#{@next_video.episode_number} - #{@next_video.title}", @next_video, class: "next-link" %>
-</span>
-<% end %>
 
 <%= javascript_include_tag "show_video" %>
+<%= javascript_include_tag "video" %>

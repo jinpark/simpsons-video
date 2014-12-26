@@ -15,3 +15,5 @@ Rails.application.config.assets.precompile += %w( videos.css.scss )
 Rails.application.config.assets.precompile += %w( darkly.css )
 Rails.application.config.assets.precompile += %w( cyborg.css )
 Rails.application.config.assets.precompile += %w( cyborg.js )
+
+Rails.application.config.assets.precompile += %w( video.js )

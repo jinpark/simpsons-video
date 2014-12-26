@@ -14,18 +14,11 @@ img.watched {
 	opacity: 0.5;
 }
 
-div.video-container {
-	width: 70%;
-	margin: 0px auto;
 p#notice {
 	margin: 0
 }
 
-video {
-	position: relative !important;
-	width: 100% !important;
-	height: auto !important;
-video.center-full {
+div.center-full {
 	display: block;
 	max-width: 100%;
 	height: 100vh;
