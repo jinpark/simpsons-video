@@ -1,3 +1,6 @@
+<%= javascript_include_tag "video" %>
+<%= javascript_include_tag "videojs.hotkeys" %>
+<%= javascript_include_tag "show_video" %>
 <p id="notice"><%= notice %></p>
 <div class="center-full">
   <video id="main-video"  class="video-js vjs-default-skin vjs-big-play-centered" height="100%" width="100%" controls poster="<%= Rails.root.join(@video.thumbnail) %>" data-setup="{}">
@@ -55,7 +58,3 @@
   <strong>Filename:</strong>
   <%= @video.filename %>
 </p>
-
-
-<%= javascript_include_tag "show_video" %>
-<%= javascript_include_tag "video" %>

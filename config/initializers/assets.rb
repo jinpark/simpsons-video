@@ -17,3 +17,4 @@ Rails.application.config.assets.precompile += %w( cyborg.css )
 Rails.application.config.assets.precompile += %w( cyborg.js )
 
 Rails.application.config.assets.precompile += %w( video.js )
+Rails.application.config.assets.precompile += %w( videojs.hotkeys.js )

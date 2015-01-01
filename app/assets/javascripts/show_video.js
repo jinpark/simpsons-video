@@ -15,5 +15,14 @@ $(document).ready(function(){
 			$.cookie('autoplay', 'true');
 			$('.autoplay-btn').addClass('active');
 		}
-	})
+	});
+	videojs('main-video').ready(function() {
+	  this.hotkeys({
+	    volumeStep: 0.1,
+	    seekStep: 5,
+	    enableMute: true,
+	    enableFullscreen: true
+	  });
+	});
+	$('#main-video').focus();
 })
