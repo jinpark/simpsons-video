@@ -1,0 +1,33 @@
+<%= form_for(@screenshot) do |f| %>
+  <% if @screenshot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@screenshot.errors.count, "error") %> prohibited this screenshot from being saved:</h2>
+
+      <ul>
+      <% @screenshot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :attachment %><br>
+    <%= f.text_field :attachment %>
+  </div>
+  <div class="field">
+    <%= f.label :season %><br>
+    <%= f.number_field :season %>
+  </div>
+  <div class="field">
+    <%= f.label :episode_number %><br>
+    <%= f.number_field :episode_number %>
+  </div>
+  <div class="field">
+    <%= f.label :time %><br>
+    <%= f.text_field :time %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

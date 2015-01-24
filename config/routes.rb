@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :screenshots
+
   resources :videos, only: [:index, :show]
 
   get '/episode/:season/:episode_number' => 'videos#redirect_to_slug'

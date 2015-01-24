@@ -16,4 +16,6 @@
 //= require jquery.twbsPagination.min
 //= require underscore-min
 //= require jquery.cookie-1.4.1.min
+//= require jquery.remotipart
 //= require video
+//= require canvas-to-blob.min

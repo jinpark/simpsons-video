@@ -52,6 +52,12 @@ gem "rest-client"
 
 gem "nokogiri"
 
+gem "carrierwave"
+
+gem "data-uri"
+
+gem 'remotipart', '~> 1.2'
+
 group :development do
   gem "better_errors"
   gem "binding_of_caller"

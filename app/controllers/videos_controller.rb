@@ -18,7 +18,7 @@ class VideosController < ApplicationController
         cookies[:episode_index] = episode_index
         @prev_video = Video.find_by_id(random_list[episode_index - 1])
         @next_video = Video.find_by_id(random_list[episode_index + 1])
-        @next_next_video = Video.find_by_id(random_list[episode_index + 2])
+        @screenshot = Screenshot.new
 
     end
 

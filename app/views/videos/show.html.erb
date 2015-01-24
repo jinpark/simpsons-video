@@ -1,6 +1,8 @@
 <%= javascript_include_tag "video" %>
 <%= javascript_include_tag "videojs.hotkeys" %>
+<%= javascript_include_tag "canvas-to-blob.min" %>
 <%= javascript_include_tag "show_video" %>
+
 <p id="notice"><%= notice %></p>
 <div class="center-full">
   <video id="main-video"  class="video-js vjs-default-skin vjs-big-play-centered" height="100%" width="100%" controls poster="<%= Rails.root.join(@video.thumbnail) %>" data-setup="{}">
@@ -8,7 +10,28 @@
   </video>
 </div>
 
-<button type="button" class="btn btn-default autoplay-btn">Autoplay</button>
+<div class="autoplay">
+  <button type="button" class="btn btn-default autoplay-btn">Autoplay</button>
+</div>
+
+<div class="screenshot-button">
+  <%= form_for @screenshot, :html => { :multipart => true, :'data-type' => 'json'}, :remote => true do |f| %> 
+      <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+    <div class="field">
+      <% f.label :data_uri %>
+      <%= f.hidden_field :data_uri %>
+      <% f.label :season %>
+      <%= f.hidden_field :season, :value => @video.season %>
+      <% f.label :episode_number %>
+      <%= f.hidden_field :episode_number, :value => @video.episode_number %>
+      <% f.label :time %>
+      <%= f.hidden_field :time %>
+    </div>
+    <div class="actions">
+      <%= f.button class: 'btn btn-default', data: {disable_with: "Loading..."}  %>
+    </div>
+  <% end %>
+</div>
 
 <% if @prev_video %>
 <span class="prev">

@@ -18,3 +18,5 @@ Rails.application.config.assets.precompile += %w( cyborg.js )
 
 Rails.application.config.assets.precompile += %w( video.js )
 Rails.application.config.assets.precompile += %w( videojs.hotkeys.js )
+
+Rails.application.config.assets.precompile += %w( canvas-to-blob.min.js )
