@@ -36,8 +36,8 @@ $(document).ready(function(){
 		var video = this;
 		$('#new_screenshot').on('ajax:before', function() {
 			var canvas = document.createElement('canvas');
-			canvas.width = 1280;
-			canvas.height = 720;
+			canvas.width = video.I.videoWidth * 2;
+			canvas.height = video.I.videoHeight * 2;
 			var ctx = canvas.getContext('2d');
 			ctx.drawImage(video.I, 0, 0, canvas.width, canvas.height);
 			var dataURI = canvas.toDataURL('image/png');
