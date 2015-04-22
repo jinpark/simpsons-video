@@ -2,24 +2,26 @@
  * Video.js Hotkeys
  * https://github.com/ctd1500/videojs-hotkeys
  *
- * Copyright (c) 2014 Chris Dougherty
+ * Copyright (c) 2015 Chris Dougherty
  * Licensed under the Apache-2.0 license.
  */
 
 (function(window, videojs) {
   'use strict';
 
+  window['videojs_hotkeys'] = { version: "0.2.3" };
   var hotkeys = function(options) {
     var player = this;
     var def_options = {
       volumeStep: 0.1,
       seekStep: 5,
       enableMute: true,
-      enableFullscreen: true
+      enableFullscreen: true,
+      enableNumbers: true
     };
     options = options || {};
 
-    // Set default player tabindex to handle keydown events
+    // Set default player tabindex to handle keydown and doubleclick events
     if (!player.el().hasAttribute('tabIndex')) {
       player.el().setAttribute('tabIndex', '-1');
     }
@@ -34,7 +36,7 @@
       }
     });
 
-    var keyDown = function(event) {
+    var keyDown = function keyDown(event) {
       var volumeStep = options.volumeStep || def_options.volumeStep;
       var seekStep = options.seekStep || def_options.seekStep;
       var enableMute = options.enableMute || def_options.enableMute;
@@ -89,9 +91,9 @@
           else if (event.which === 77) {
             if (enableMute) {
               if (player.muted()) {
-                console.log(player.muted(false));
+                player.muted(false);
               } else {
-                console.log(player.muted(true));
+                player.muted(true);
               }
             }
           }
@@ -106,11 +108,42 @@
               }
             }
           }
+
+          else if ([48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58].indexOf(event.which) > -1) {
+            var number = event.which - 48;
+            event.preventDefault();
+            player.currentTime(player.duration() * number * 0.1); 
+          }
+
+        }
+      }
+    };
+
+    var doubleClick = function doubleClick(event) {
+      var enableFull = options.enableFullscreen || def_options.enableFullscreen;
+
+      // When controls are disabled, hotkeys will be disabled as well
+      if (player.controls()) {
+
+        // Don't catch clicks if any control buttons are focused
+        var activeEl = event.relatedTarget || event.toElement || document.activeElement;
+        if (activeEl == player.el() ||
+            activeEl == player.el().querySelector('.vjs-tech') ||
+            activeEl == player.el().querySelector('.iframeblocker')) {
+
+          if (enableFull) {
+            if (player.isFullscreen()) {
+              player.exitFullscreen();
+            } else {
+              player.requestFullscreen();
+            }
+          }
         }
       }
     };
 
     player.on('keydown', keyDown);
+    player.on('dblclick', doubleClick);
 
     return this;
   };
