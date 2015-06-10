@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get '/history' => 'videos#history'
   get '/next' => 'videos#next'
+
+  post '/screenshots/make_gif' => 'screenshots#create_gif'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

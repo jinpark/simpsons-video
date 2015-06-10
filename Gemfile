@@ -7,12 +7,13 @@ gem 'rails', '4.1.7'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
+gem 'less-rails', '~> 2.7.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
+gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -44,19 +45,9 @@ gem 'twitter-bootswatch-rails', '~> 3.2.0'
 # twitter bootstrap helpers gem, e.g., alerts etc...
 gem 'twitter-bootswatch-rails-helpers'
 
-gem 'therubyracer'
+gem 'carrierwave'
 
 gem "passenger"
-
-gem "rest-client"
-
-gem "nokogiri"
-
-gem "carrierwave"
-
-gem "data-uri"
-
-gem 'remotipart', '~> 1.2'
 
 group :development do
   gem "better_errors"

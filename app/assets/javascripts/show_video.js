@@ -55,5 +55,34 @@ $(document).ready(function(){
 				$('.autoplay-btn').addClass('active');
 			}
 		});
+
+		var start = document.getElementById("start-button");
+		var end = document.getElementById("end-button");
+		var startTime, endTime
+
+		start.addEventListener('click', function(){
+		  startTime = video.currentTime();
+		  document.getElementById("output").innerHTML = "Capturing video frames.";
+		},false);
+
+		end.addEventListener('click', function(){
+		  endTime = video.currentTime();
+		  $.ajax({
+		  	type: 'POST',
+		  	url: '/screenshots/make_gif/', 
+		  	dataType: "json",
+		  	data: {'screenshot': 
+		  			{
+		  			'season': $('#season').data('season'),
+		  			'episode_number': $('#episode_number').data('episode-number'),
+		  			'start_time': startTime,
+		  			'end_time': endTime
+		  			}
+		  		  }
+		  }).done(function(data, status, xhr){
+		  		window.open(data.attachment.attachment.url, '_blank');
+		  	});
+		  document.getElementById("output").innerHTML = "Processing the GIF.";
+		},false);
 	})
 })

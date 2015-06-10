@@ -32,6 +32,9 @@
     </div>
   <% end %>
 </div>
+  <button id="start-button">start GIF frames</button>
+  <button id="end-button">End GIF frames</button>
+
 
 <% if @prev_video %>
 <span class="prev">
@@ -58,12 +61,12 @@
 
 <p class="center">
   <strong>Season:</strong>
-  <%= @video.season %>
+  <span id="season" data-season="<%= @video.season %>"><%= @video.season %></span>
 </p>
 
 <p class="center">
   <strong>Episode number:</strong>
-  <%= @video.episode_number %>
+  <span id="episode_number" data-episode-number="<%= @video.episode_number %>"><%= @video.episode_number %></span>
 </p>
 
 <p class="center">
@@ -81,3 +84,6 @@
   <strong>Filename:</strong>
   <%= @video.filename %>
 </p>
+
+<div id="output"></div>
+
