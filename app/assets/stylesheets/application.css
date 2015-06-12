@@ -12,6 +12,6 @@
  *
  *
  *= require_self
- *= require videos
  *= require video-js.min
+ *= require videos
  */

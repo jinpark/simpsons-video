@@ -7,11 +7,15 @@
 <div class="center-full">
   <video id="main-video"  class="video-js vjs-default-skin vjs-big-play-centered" height="100%" width="100%" controls poster="<%= Rails.root.join(@video.thumbnail) %>" data-setup="{}">
     <source src="<%= Rails.root.join(@video.path, @video.filename) %>" type="video/mp4">
+     <track kind="captions" src="<%= Rails.root.join(@video.subtitle_path, @video.season.to_s, @video.subtitle_filename) %>" srclang="en" label="English" default>
+
   </video>
 </div>
 
 <div class="autoplay">
   <button type="button" class="btn btn-default autoplay-btn">Autoplay</button>
+  <button class="btn btn-default" id="start-gif">start GIF frames</button>
+  <button class="btn btn-default" id="start-subtitle-gif">start subtitle GIF frames</button>
 </div>
 
 <div class="screenshot-button">
@@ -32,9 +36,6 @@
     </div>
   <% end %>
 </div>
-  <button id="start-button">start GIF frames</button>
-  <button id="end-button">End GIF frames</button>
-
 
 <% if @prev_video %>
 <span class="prev">

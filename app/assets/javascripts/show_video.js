@@ -56,33 +56,67 @@ $(document).ready(function(){
 			}
 		});
 
-		var start = document.getElementById("start-button");
-		var end = document.getElementById("end-button");
+		var startGif = document.getElementById("start-gif");
+		var startSubGif = document.getElementById("start-subtitle-gif");
+		var started = false;
 		var startTime, endTime
 
-		start.addEventListener('click', function(){
-		  startTime = video.currentTime();
-		  document.getElementById("output").innerHTML = "Capturing video frames.";
+		startGif.addEventListener('click', function(){
+			if ( started == false ) {
+				startTime = video.currentTime();
+				started = true;
+				startGif.innerHTML = "End video frame capture";
+			} else {
+				endTime = video.currentTime();
+				$.ajax({
+					type: 'POST',
+					url: '/screenshots/make_gif/', 
+					dataType: "json",
+					data: {'screenshot': 
+							{
+							'season': $('#season').data('season'),
+							'episode_number': $('#episode_number').data('episode-number'),
+							'start_time': startTime,
+							'end_time': endTime
+							}
+						  }
+				}).done(function(data, status, xhr){
+						window.open(data.attachment.attachment.url, '_blank');
+					});
+				started = false;
+				startGif.innerHTML = "start GIF frames";
+			}
+
 		},false);
 
-		end.addEventListener('click', function(){
-		  endTime = video.currentTime();
-		  $.ajax({
-		  	type: 'POST',
-		  	url: '/screenshots/make_gif/', 
-		  	dataType: "json",
-		  	data: {'screenshot': 
-		  			{
-		  			'season': $('#season').data('season'),
-		  			'episode_number': $('#episode_number').data('episode-number'),
-		  			'start_time': startTime,
-		  			'end_time': endTime
-		  			}
-		  		  }
-		  }).done(function(data, status, xhr){
-		  		window.open(data.attachment.attachment.url, '_blank');
-		  	});
-		  document.getElementById("output").innerHTML = "Processing the GIF.";
+		startSubGif.addEventListener('click', function(){
+			if ( started == false ) {
+				startTime = video.currentTime();
+				started = true;
+				startSubGif.innerHTML = "End video frame capture";
+			} else {
+				endTime = video.currentTime();
+				$.ajax({
+					type: 'POST',
+					url: '/screenshots/make_gif/', 
+					dataType: "json",
+					data: {'screenshot': 
+							{
+							'season': $('#season').data('season'),
+							'episode_number': $('#episode_number').data('episode-number'),
+							'start_time': startTime,
+							'end_time': endTime,
+							'subtitle': true
+							}
+						  }
+				}).done(function(data, status, xhr){
+						window.open(data.attachment.attachment.url, '_blank');
+					});
+				started = false;
+				startSubGif.innerHTML = "start subtitle GIF frames";
+			}
+
 		},false);
+
 	})
 })

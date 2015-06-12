@@ -54,14 +54,19 @@ class ScreenshotsController < ApplicationController
   # POST /create_gif
   def create_gif
     if screenshot_params['start_time'] && screenshot_params['end_time']
-      time_diff = screenshot_params['end_time'].to_f - screenshot_params['start_time'].to_f
-      start_time = Time.at(screenshot_params['start_time'].to_f).utc.strftime("%H:%M:%S.%L")
-      end_time = Time.at(time_diff).utc.strftime("%H:%M:%S.%L")
+      start_time = screenshot_params['start_time'].to_f.round(3)
+      end_time = screenshot_params['end_time'].to_f.round(3)
+      time_diff = end_time - start_time
       season = screenshot_params['season'].to_i
       episode_number = screenshot_params['episode_number'].to_i
       file_name = "#{season}-#{episode_number}-#{screenshot_params['start_time']}-#{screenshot_params['end_time']}"
       video = Video.find_by_season_and_episode_number(season, episode_number)
-      ffmpeg = "ffmpeg -ss #{start_time} -i #{Rails.root}/public/#{video.path}#{video.filename} -pix_fmt rgb8 -r 10 -vf 'scale=-1:480' -t #{end_time} #{Rails.root}/public/uploads/tmp/#{file_name}.gif"
+      video_path = "#{Rails.root}/public/#{video.path}#{video.filename}"
+      subtitle_path = "#{Rails.root}/public#{video.subtitle_path}#{video.subtitle_filename}"
+      ffmpeg = "ffmpeg -ss #{start_time} -i #{video_path} -pix_fmt rgb8 -r 10 -vf 'scale=-1:480' -t #{time_diff} #{Rails.root}/public/uploads/tmp/#{file_name}.gif"
+      if screenshot_params['subtitle']
+        ffmpeg = "ffmpeg -ss #{start_time} -i #{video_path} -pix_fmt rgb8 -r 10 -vf scale=-1:480,setpts=PTS+#{start_time}/TB,subtitles=#{subtitle_path},setpts=PTS-STARTPTS -t #{time_diff} #{Rails.root}/public/uploads/tmp/#{file_name}.gif"
+      end
       system(ffmpeg)
     end
     @screenshot = Screenshot.new(attachment: File.open("#{Rails.root}/public/uploads/tmp/#{file_name}.gif"),
@@ -110,6 +115,6 @@ class ScreenshotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def screenshot_params
-      params.require(:screenshot).permit(:attachment, :season, :episode_number, :time, :data_uri, :start_time, :end_time)
+      params.require(:screenshot).permit(:attachment, :season, :episode_number, :time, :data_uri, :start_time, :end_time, :subtitle)
     end
 end
