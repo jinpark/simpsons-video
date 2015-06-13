@@ -49,6 +49,10 @@ gem 'carrierwave'
 
 gem "passenger"
 
+gem 'activeadmin', github: 'activeadmin'
+
+gem 'devise'
+
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
