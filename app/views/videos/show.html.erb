@@ -7,7 +7,7 @@
 <div class="center-full">
   <video id="main-video"  class="video-js vjs-default-skin vjs-big-play-centered" height="100%" width="100%" controls poster="<%= Rails.root.join(@video.thumbnail) %>" data-setup="{}">
     <source src="<%= Rails.root.join(@video.path, @video.filename) %>" type="video/mp4">
-     <track kind="captions" src="<%= Rails.root.join(@video.subtitle_path, @video.season.to_s, @video.subtitle_filename) %>" srclang="en" label="English" default>
+     <track kind="captions" src="<%= Rails.root.join(@video.subtitle_path, @video.subtitle_filename) %>" srclang="en" label="English" default>
 
   </video>
 </div>
