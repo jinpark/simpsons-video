@@ -1,10 +1,10 @@
 class Screenshot < ActiveRecord::Base
 	mount_uploader :attachment, ScreenshotUploader
 
-	after_save :enqueue_create_or_update_document_job
-	after_destroy :enqueue_delete_document_job
+	# after_save :enqueue_create_or_update_document_job
+	# after_destroy :enqueue_delete_document_job
 
-	private
+	# private
 
 	# def enqueue_create_or_update_document_job
 	#   Delayed::Job.enqueue CreateOrUpdateSwiftypeDocumentJob.new(self.id)
