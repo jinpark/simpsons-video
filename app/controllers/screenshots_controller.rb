@@ -65,12 +65,22 @@ class ScreenshotsController < ApplicationController
       subtitle_path = "#{Rails.root}/public#{video.subtitle_path}#{video.subtitle_filename}"
       ffmpeg = "ffmpeg -ss #{start_time} -i #{video_path} -pix_fmt rgb8 -r 10 -vf 'scale=-1:480' -t #{time_diff} #{Rails.root}/public/uploads/tmp/#{file_name}.gif"
       if screenshot_params['subtitle']
+        puts subtitle_path
         ffmpeg = "ffmpeg -ss #{start_time} -i #{video_path} -pix_fmt rgb8 -r 10 -vf scale=-1:480,setpts=PTS+#{start_time}/TB,subtitles=#{subtitle_path},setpts=PTS-STARTPTS -t #{time_diff} #{Rails.root}/public/uploads/tmp/#{file_name}.gif"
       end
       system(ffmpeg)
     end
     @screenshot = Screenshot.new(attachment: File.open("#{Rails.root}/public/uploads/tmp/#{file_name}.gif"),
                                  season: season, episode_number: episode_number)
+    subs = SRT::File.parse(File.new(subtitle_path))
+    part_sub = subs.split(at: Time.at(start_time).utc.strftime("%H:%M:%S,%L")).last.split(at: Time.at(time_diff).utc.strftime("%H:%M:%S,%L")).first
+    sub_text = ""
+    if part_sub.lines
+      part_sub.lines.each do |line| 
+        sub_text = " " + sub_text + " " + line.text.join(" ") 
+      end
+    end
+    @screenshot.subtitle_text = sub_text
     respond_to do |format|
       if @screenshot.save
         format.js { render json: @screenshot.attachment, status: :ok }
@@ -107,6 +117,10 @@ class ScreenshotsController < ApplicationController
     end
   end
 
+  def search 
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_screenshot
@@ -115,6 +129,6 @@ class ScreenshotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def screenshot_params
-      params.require(:screenshot).permit(:attachment, :season, :episode_number, :time, :data_uri, :start_time, :end_time, :subtitle)
+      params.require(:screenshot).permit(:attachment, :season, :episode_number, :time, :data_uri, :start_time, :end_time, :subtitle, :tags)
     end
 end

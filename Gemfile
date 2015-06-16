@@ -53,6 +53,15 @@ gem 'activeadmin', github: 'activeadmin'
 
 gem 'devise'
 
+gem 'swiftype'
+
+gem 'delayed_job_active_record'
+
+gem 'puma'
+
+gem 'srt'
+
+
 group :development do
   gem "better_errors"
   gem "binding_of_caller"

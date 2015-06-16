@@ -38,4 +38,6 @@ Rails.application.configure do
     ActiveRecord::Base.logger = Rails.logger.clone
     ActiveRecord::Base.logger.level = 1
   end
+
+  Rails.application.routes.default_url_options[:host] = 'localhost:5100'
 end

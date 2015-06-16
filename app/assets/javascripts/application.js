@@ -18,3 +18,4 @@
 //= require jquery.cookie-1.4.1.min
 //= require video
 //= require canvas-to-blob.min
+//= require jquery.swiftype.autocomplete
