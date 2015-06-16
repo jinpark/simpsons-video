@@ -6,13 +6,13 @@ class Screenshot < ActiveRecord::Base
 
 	private
 
-	def enqueue_create_or_update_document_job
-	  Delayed::Job.enqueue CreateOrUpdateSwiftypeDocumentJob.new(self.id)
-	end
+	# def enqueue_create_or_update_document_job
+	#   Delayed::Job.enqueue CreateOrUpdateSwiftypeDocumentJob.new(self.id)
+	# end
 
-	def enqueue_delete_document_job
-	  Delayed::Job.enqueue DeleteSwiftypeDocumentJob.new(self.id)
-	end
+	# def enqueue_delete_document_job
+	#   Delayed::Job.enqueue DeleteSwiftypeDocumentJob.new(self.id)
+	# end
 end
 
 
