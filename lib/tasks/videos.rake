@@ -48,7 +48,7 @@ namespace :videos do
     puts "add subtitle path and filename"
     videos.each do |video|
       subtitle_path = "/subtitles/#{video.season}/"
-      subtitle_filename = "#{video.season}x#{video.episode_number}.srt"
+      subtitle_filename = "#{video.season}x#{"%02d" % video.episode_number}.srt"
       video.subtitle_path = subtitle_path
       video.subtitle_filename = subtitle_filename
       if !video.save
