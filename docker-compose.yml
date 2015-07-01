@@ -1,0 +1,22 @@
+dbdata:
+  image: postgres:9.3
+  volumes:
+    - /var/lib/postgresql
+  command: true
+
+db:
+  image: postgres:9.3
+  volumes_from:
+    - dbdata
+  ports:
+    - "5432"
+
+web:
+  build: .
+  command: foreman start
+  volumes:
+    - Users/jinpark/Documents/simpsons:/myapp/public/videos
+  ports:
+    - "5100:5100"
+  links:
+    - db

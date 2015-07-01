@@ -47,7 +47,7 @@ gem 'twitter-bootswatch-rails-helpers'
 
 gem 'carrierwave'
 
-gem "passenger"
+# gem "passenger"
 
 gem 'activeadmin', github: 'activeadmin'
 
@@ -61,6 +61,7 @@ gem 'puma'
 
 gem 'srt'
 
+gem 'foreman'
 
 group :development do
   gem "better_errors"

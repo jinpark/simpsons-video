@@ -21,9 +21,18 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
 
-development:
-  <<: *default
-  database: simpsons-video_development
+# development:
+#   <<: *default
+#   database: simpsons-video_development
+
+development: &default
+  adapter: postgresql
+  encoding: unicode
+  database: postgres
+  pool: 5
+  username: postgres
+  password:
+  host: db
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -78,8 +87,18 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: simpsons-video_production
-  username: simpsons-video
-  password: <%= ENV['SIMPSONS-VIDEO_DATABASE_PASSWORD'] %>
+
+# production:
+#   <<: *default
+#   database: simpsons-video_production
+#   username: simpsons-video
+#   password: <%= ENV['SIMPSONS-VIDEO_DATABASE_PASSWORD'] %>
+
+production: &default
+  adapter: postgresql
+  encoding: unicode
+  database: postgres
+  pool: 5
+  username: postgres
+  password:
+  host: db

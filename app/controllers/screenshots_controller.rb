@@ -65,10 +65,11 @@ class ScreenshotsController < ApplicationController
       subtitle_path = "#{Rails.root}/public#{video.subtitle_path}#{video.subtitle_filename}"
       ffmpeg = "ffmpeg -ss #{start_time} -i #{video_path} -pix_fmt rgb8 -r 10 -vf 'scale=-1:480' -t #{time_diff} #{Rails.root}/public/uploads/tmp/#{file_name}.gif"
       if screenshot_params['subtitle']
-        puts subtitle_path
         ffmpeg = "ffmpeg -ss #{start_time} -i #{video_path} -pix_fmt rgb8 -r 10 -vf scale=-1:480,setpts=PTS+#{start_time}/TB,subtitles=#{subtitle_path},setpts=PTS-STARTPTS -t #{time_diff} #{Rails.root}/public/uploads/tmp/#{file_name}.gif"
       end
-      system(ffmpeg)
+      puts 'system ffmpeg'
+      puts system(ffmpeg)
+
     end
     @screenshot = Screenshot.new(attachment: File.open("#{Rails.root}/public/uploads/tmp/#{file_name}.gif"),
                                  season: season, episode_number: episode_number)
