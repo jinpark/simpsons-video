@@ -25,6 +25,7 @@ default: &default
 #   <<: *default
 #   database: simpsons-video_development
 
+# if using docker compose
 development: &default
   adapter: postgresql
   encoding: unicode
