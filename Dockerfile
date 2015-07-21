@@ -25,7 +25,7 @@ RUN apt-get update -qq
 
 # RUN bundle exec rails c
 
-RUN echo deb http://www.deb-multimedia.org jessie main non-free >> /etc/apt/sources.list
+RUN echo "deb http://www.deb-multimedia.org jessie main non-free" >> /etc/apt/sources.list
 RUN apt-get -y dist-upgrade
 RUN apt-get -y --force-yes update && apt-get install --force-yes -y deb-multimedia-keyring 
 RUN apt-get -y --force-yes install libass-dev ffmpeg
