@@ -21,6 +21,8 @@ web:
     - "5100:5100"
   links:
     - db
+  dns:
+    - 8.8.8.8
   environment:
     RAILS_ENV: production
     SECRET_KEY_BASE: 632464e1060065bf5d4c01a72362e8e2baf565990cbbd973270de9744312f816561021abcfc445ac161c6b6767b4230262944c2fbccfd3f84bd0aeeb562d407a
@@ -29,6 +31,8 @@ nginx:
   restart: always
   build: nginx/.
   command: 
+  dns:
+    - 8.8.8.8
   links:
     - web
   ports:
