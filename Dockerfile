@@ -1,4 +1,5 @@
 FROM ruby:2.2.0
+RUN rm /etc/apt/sources.list
 RUN apt-get update -qq
 
 # RUN apt-get -y --force-yes install autoconf automake build-essential libass-dev libfreetype6-dev \
