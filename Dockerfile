@@ -35,4 +35,13 @@ ADD Gemfile /myapp/Gemfile
 ADD Gemfile.lock /myapp/Gemfile.lock  
 RUN bundle install
 ADD . /myapp
-# CMD foreman start
+CMD foreman start
+
+# docker run -d --name rails-simpsons \
+#            -v /Users/jinpark/Documents/simpsons/videos:/myapp/public/videos \
+#            -v /Users/jinpark/Documents/simpsons/subtitles:/myapp/public/subtitles \
+#            -p 5100:5100 \
+#            --link db \
+#            -e "RAILS_ENV=production" \
+#            -e "SECRET_KEY_BASE=632464e1060065bf5d4c01a72362e8e2baf565990cbbd973270de9744312f816561021abcfc445ac161c6b6767b4230262944c2fbccfd3f84bd0aeeb562d407a"
+
